@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="device" default="gpu"/>
+  <arg name="model_name" default="yolox-m"/>
+  <arg name="ckpt" default="$(find yolox)/models/yolox_m.pth"/>
+  <node name="yolox" pkg="yolox" type="demo_ros.py" output="screen">
+    <param name="device" value="$(arg device)"/>
+    <param name="model_name" value="$(arg model_name)"/>
+    <param name="ckpt" value="$(arg ckpt)"/>
+    <remap from="~image" to="/hand_camera/color/image_rect_color"/>
+  </node>
+</launch>
